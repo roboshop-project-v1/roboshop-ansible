@@ -2,7 +2,7 @@
 - name: Add the application user roboshop
   ansible.builtin.user:
     name: roboshop
-    
+
 - name: Recursively remove directory app
   ansible.builtin.file:
     path: /app
@@ -10,7 +10,7 @@
 
 - name: Create a  APP directory if it does not exist
   ansible.builtin.file:
-    path: app
+    path: /app
     state: directory
 
 - name: Unarchive a file that needs to be downloaded 
