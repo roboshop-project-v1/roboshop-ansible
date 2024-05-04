@@ -1,0 +1,25 @@
+- name: disable nodejs
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: enable nodejs:18
+  ansible.builtin.shell: dnf module enable nodejs:18 -y
+  
+- name: Install  Nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
+
+- name: import app-prerequisites tasks
+  ansible.builtin.import_tasks: app_prerequisite.yml
+
+- name: npm install
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+- name: import schema setup tasks
+  ansible.builtin.import_tasks: mongo-schema.yml
+
+- name: import systemd setup
+  ansible.builtin.import_tasks: systemd-setup.yml
+  
