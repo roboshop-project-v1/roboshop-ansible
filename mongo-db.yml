@@ -1,0 +1,25 @@
+
+- name: mongoDB Setup
+  hosts: all
+  become: true
+  tasks:
+    - name: Copy mongo repo  into default.d 
+      ansible.builtin.copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: Install the latest version of Mongodb
+      ansible.builtin.dnf:
+        name: mongodb-org
+        state: latest
+
+    - name: Replace old hostname with new hostname 0.0.0.0
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+    - name: Enable and restart mongo
+      ansible.builtin.systemd_service:
+        name: mongod
+        state: restarted
+        enabled: true
