@@ -5,4 +5,4 @@
   become: true
   tasks:
     - name: import nodejs tasks
-      ansible.builtin.import_tasks: nodejs.yaml
+      ansible.builtin.import_tasks: nodejs.yml
