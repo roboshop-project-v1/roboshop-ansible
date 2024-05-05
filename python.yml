@@ -1,10 +1,10 @@
 - name: Python install
   ansible.builtin.dnf: 
-  name: 
-    - python36
-    - gcc
-    - python3-devel
-  state: installed
+    name: 
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
 
 - name: import app-prerequisites tasks
   ansible.builtin.import_tasks: app_prerequisite.yml
