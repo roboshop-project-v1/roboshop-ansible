@@ -1,0 +1,34 @@
+- name: Redis Setup
+  hosts: all
+  become: true
+  tasks:
+    - name: Install the redis rpm from a remote repo
+      ansible.builtin.dnf:
+        name: 'http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm'
+        state: present
+
+    - name: enable redis:Remi-6.2
+      ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
+
+    - name: Install the redis
+      ansible.builtin.dnf:
+        name: redis
+        state: installed
+
+    - name: Replace old hostname with new hostname 0.0.0.0
+      ansible.builtin.replace:
+        path: /etc/redis.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+
+    - name: Replace old hostname with new hostname 0.0.0.0
+      ansible.builtin.replace:
+        path: /etc/redis/redis.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+
+    - name: Enable and restart redis
+      ansible.builtin.systemd_service:
+        name: redis
+        state: restarted
+        enabled: true
