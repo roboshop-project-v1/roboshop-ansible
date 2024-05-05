@@ -6,6 +6,7 @@
       ansible.builtin.dnf:
         name: 'http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm'
         state: present
+        disable_gpg_check: true
 
     - name: enable redis:Remi-6.2
       ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
