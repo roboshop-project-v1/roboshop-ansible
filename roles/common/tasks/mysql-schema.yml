@@ -1,0 +1,13 @@
+- name: Copy mysql repo file into repo
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: Mysql schema setup
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: load schema
+  ansible.builtin.shell: mysql -h mysql-dev.jdevops.online -uroot -pRoboShop@1 < /app/schema/{{component}}.sql
+
