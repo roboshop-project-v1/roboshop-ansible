@@ -5,7 +5,7 @@
     - name: Install the redis rpm from a remote repo
       ansible.builtin.dnf:
         name: 'http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm'
-        state: present
+        state: installed
         disable_gpg_check: true
 
     - name: enable redis:Remi-6.2
