@@ -1,3 +1,5 @@
+- name: Set Hostname
+  ansible.builtin.shell: set-hostname frontend
 
 - name: Install the latest version of Nginx
   ansible.builtin.dnf:
