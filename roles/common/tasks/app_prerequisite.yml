@@ -1,3 +1,5 @@
+- name: Setup Hostname
+  ansible.builtin.shell: set-hostname {{ component }}
 
 - name: Add the application user roboshop
   ansible.builtin.user:
