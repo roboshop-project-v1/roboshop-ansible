@@ -18,11 +18,23 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
+#you can use this under port 46-session
+# filters:
+# - name: "tag:monitor"
+#   values: ["yes"]
 scrape_configs:
   - job_name: 'node'
     ec2_sd_configs:
       - region: us-east-1
         port: 9100
-        filters:
-          - name: "tag:monitor"
-            values: ["yes"]
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_Name]
+        target_labels: name
+      - source_labels: [__meta_ec2_tag_env]
+        target_labels: env
+      - source_labels: [__meta_ec2_instance_type]
+        target_labels: instance_type
+      - source_labels: [__meta_ec2_instance_state]
+        target_labels: instance_state
+      
+        
