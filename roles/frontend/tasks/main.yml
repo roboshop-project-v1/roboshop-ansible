@@ -37,7 +37,7 @@
 - name: create nginx prometheus exporter directory
   ansible.builtin.file:
     path: /opt/nginx_exporter
-    state: restarted
+    state: directory
 
 - name: Download exporter
   ansible.builtin.unarchive:
