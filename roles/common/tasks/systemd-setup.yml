@@ -9,3 +9,16 @@
     state: restarted
     enabled: true
     daemon_reload: true
+
+## Rsys log config
+
+- name: setup Rsys log config file 
+  ansible.builtin.template:
+    src: "rsyslog.conf"
+    dest: /etc/rsyslog.d/roboshop.conf
+
+
+- name: restart rsyslog service
+  ansible.builtin.systemd_service:
+    name: rsyslog 
+    state: restarted
