@@ -11,10 +11,10 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: Copy nginx conf file into respective location
-  ansible.builtin.copy:
-    src: nginx.conf
-    dest: /etc/nginx/nginx.conf
+# - name: Copy nginx conf file into respective location
+#   ansible.builtin.copy:
+#     src: nginx.conf
+#     dest: /etc/nginx/nginx.conf
 
 - name: Recursively remove directory html
   ansible.builtin.file:
@@ -61,7 +61,7 @@
     state: restarted
     enabled: true
       
-- name : File beat setup
-  ansible.builtin.import_role:
-    name: elk
-    tasks_from: filebeat
+# - name : File beat setup
+#   ansible.builtin.import_role:
+#     name: elk
+#     tasks_from: filebeat
