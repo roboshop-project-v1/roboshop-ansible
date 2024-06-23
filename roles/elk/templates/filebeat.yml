@@ -168,7 +168,7 @@ output.logstash:
   #ssl.key: "/etc/pki/client/cert.key"
 
 # ================================= Processors =================================
-#processors:
+processors:
    - drop_fields:
       fields: ["agent.ephemeral_id", "agent.id","agent.name","agent.type","agent.version","input_type"]
       ignore_missing: false
